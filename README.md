@@ -1,2 +1,3 @@
-# thorium
-Backend cohort Feb 2022 - May 2022
+# Radon 
+NodeJs
+Backend cohort May 2022 - Sep 2022
