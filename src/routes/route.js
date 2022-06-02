@@ -51,7 +51,7 @@ router.get('/hello', function (req, res) {
     console.log(union);
     const Frompairs=lodash.fromPairs(union);
     console.log(Frompairs);
-    res.send("this assingment countain Chunks and Tails")
+    res.send("this assingment countain Chunks and Tails abd Union, Frompairs");
 });
 
 module.exports = router;
