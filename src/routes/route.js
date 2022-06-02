@@ -1,7 +1,8 @@
 const express = require('express');
 const logger = require('./logger/logger.js');
-const helper= require('./utill/helper.js');
+const helper = require('./utill/helper.js');
 const formator = require('./validator/formatter.js');
+const lodash=require('lodash');
 
 const router = express.Router();
 
@@ -25,6 +26,27 @@ router.get('/test-me3', function (req, res) {
     res.send('My 4th api validator')
 });
 
+router.get('./candidate', function (req, res) {
+    const candidate = {
+        name: "shusant",
+        age: 18,
+        number: 777864568,
+        languages: "javascript"
+    }
+    res.send('sdjijksha');
+});
+
+router.get('/hello', function (req, res) {
+    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const chunk = lodash.chunk(month, 4);
+    console.log(chunk);
+
+    const oddNum = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+    const tails = lodash.tail(oddNum);
+    console.log(tails);
+
+    res.send("this assingment countain Chunks and Tails")
+});
 
 module.exports = router;
 // adding this comment for no reason

@@ -4,7 +4,7 @@ const date = new Date();
 // Current Date
 const printDate = () => {
 
-    date1 = new Date().toJSON().slice(0, 10);
+    
     console.log(date1);
 }
 
