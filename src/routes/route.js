@@ -2,7 +2,7 @@ const express = require('express');
 const logger = require('./logger/logger.js');
 const helper = require('./utill/helper.js');
 const formator = require('./validator/formatter.js');
-const lodash=require('lodash');
+const lodash = require('lodash');
 
 const router = express.Router();
 
@@ -45,6 +45,12 @@ router.get('/hello', function (req, res) {
     const tails = lodash.tail(oddNum);
     console.log(tails);
 
+    const movies1 = [["thriler", "Inception"], ["action", "Avengers"], ["fantasy", "Harry Potter"]];
+    const movies2 = [["horror", "It"], ["adventure", "Interstaller"]];
+    let union = lodash.union(movies1, movies2);
+    console.log(union);
+    const Frompairs=lodash.fromPairs(union);
+    console.log(Frompairs);
     res.send("this assingment countain Chunks and Tails")
 });
 
