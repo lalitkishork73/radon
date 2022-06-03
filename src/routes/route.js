@@ -15,7 +15,7 @@ router.get('/test-me', function (req, res) {
 
 router.get('/hello', function (req, res) {
    
-    res.send('Hello there!')
+    res.send('Hello there! this lalit')
 });
 
 router.get('/candidates', function(req, res){
@@ -36,6 +36,38 @@ router.get('/candidates/:canidatesName', function(req, res){
     res.send('Done')
 })
 
+router.get('/test-api1', function (req, res) {
 
+    res.send("tested api string");
+});
+router.get('/test-api-json', function (req, res) {
+
+    res.send({id:56,name:"bhavesh",age:25});
+});
+router.post('/test-post', function (req, res) {
+
+    res.send({id:56,name:"bhavesh",age:25});
+});
+router.post('/test-post1', function (req, res) {
+
+    res.send({id:56,name:"bhavesh",age:25,status:true});
+});
+router.post('/test-post2', function (req, res) {
+    console.log(req.body);
+    res.send({id:56,name:"bhavesh",age:25,status:true});
+});
+router.post('/test-post3', function (req, res) {
+    let id=req.body.user;
+    let pwd=req.body.pwd;
+    console.log(id,pwd);
+    res.send({id:56,name:"bhavesh",age:25,status:true});
+});
+router.post('/test-post4', function (req, res) {
+    let arr=[12,"finctionup"];
+    let ele=req.body.element;
+    arr.push(ele)
+    console.log(arr);
+    res.send({id:56,name:"bhavesh",age:25,status:true});
+});
 module.exports = router;
 // adding this comment for no reason
