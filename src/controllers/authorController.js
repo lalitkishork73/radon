@@ -27,8 +27,7 @@ const authorId = async function (req, res) {
 const bookPrice = async function (req, res) {
     let books = await bookModel
         .find({ price: { $gte: 50, $lte: 100 } })
-        .select({ author_id: 1 });
-
+        
     let id = books.map((book) => book.author_id);
     const authors = await authorModel.find({ author_id: { $in: id } });
     let authorsName = authors.map((name) => name.author_name);
@@ -47,9 +46,30 @@ const authorUpdates = async function (req, res) {
     res.send({ author, price });
 };
 
+const Author_Id = async function (req, res) {
+    let id = req.params.Author_Id;
+    let findAuthor = await authorModel.findOne({ author_id: id });
+    let bookAuthorId=findAuthor.author_id;
+    let bookss = await bookModel.find({ author_id: bookAuthorId });
+    res.send({Books:bookss});
+
+}
+
+const authorAge= async function(req,res){
+    let findAuthor=await authorModel.findOne({$gt:{age:50}})
+    let authorId=findAuthor.author_id;
+    let name=findAuthor.author_name;
+    let age=findAuthor.age;
+    let bookRating= await bookModel.findOne({author_id:authorId});
+    if (bookRating.ratings>4){
+        res.send({name,age})
+    }
+}
 // Exporting modules
 module.exports.createAuthor = createAuthor;
 module.exports.getAuthor = getAuthor;
 module.exports.authorId = authorId;
 module.exports.bookPrice = bookPrice;
 module.exports.authorUpdates = authorUpdates;
+module.exports.Author_Id = Author_Id;
+module.exports.authorAge = authorAge;
