@@ -11,5 +11,5 @@ const getAuthorsData= async function (req, res) {
     res.send({data: authors})
 }
 
-module.exports.createAuthor= createAuthor
-module.exports.getAuthorsData= getAuthorsData
+module.exports.createAuthor= createAuthor;
+module.exports.getAuthorsData= getAuthorsData;
