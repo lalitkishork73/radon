@@ -1,26 +1,34 @@
 
-const mid1= function ( req, res, next) {
-    req.falana= "hi there. i am adding something new to the req object"
-    console.log("Hi I am a middleware named Mid1")
-    next()
+const ProductModel = require("../models/productModel")
+const UserModel = require("../models/userModel")
+const isFree = function (req, res, next) {
+    let freeUser = req.headers.isfreeappuser
+    if (freeUser) {
+        next()
+    } else {
+        res.send({ msg: "The request is missing a mandatory header!" })
+    }
 }
 
-const mid2= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid2")
-    next()
-}
 
-const mid3= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid3")
-    next()
-}
+const isOrderIDvalid = async function (req, res, next) {
+    let order = req.body
+    let userIDOrder = order.userId;
+    let productIDOrder = order.productId;
 
-const mid4= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid4")
-    next()
+    let userID = await UserModel.findById(userIDOrder);
+    let productId = await ProductModel.findById(productIDOrder);
+ 
+    console.log(userID);
+    if (userIDOrder != userID._id) {
+        res.send("user Id is not valid,  No such User in Our List !")
+    }
+    else if (productIDOrder != productId._id) {
+        res.send("product Id is not valid,  No such Product in Our List !")
+    }
+    else{
+        next();
+    }
 }
-
-module.exports.mid1= mid1
-module.exports.mid2= mid2
-module.exports.mid3= mid3
-module.exports.mid4= mid4
+module.exports.isFree = isFree;
+module.exports.isOrderIDvalid = isOrderIDvalid;
